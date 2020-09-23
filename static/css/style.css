@@ -128,7 +128,7 @@ button:focus {
 /* Main Title Area css
 ============================================================================================ */
 .main_title {
-  text-align: center;
+  text-align: center; git push --set-upstream origin dev_branch
   max-width: 720px;
   margin: 0px auto 75px;
 }
