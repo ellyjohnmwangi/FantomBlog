@@ -88,8 +88,8 @@
                             	<div class="blog_text">
 									<div class="blog_text_inner">
 										<a class="cat" href="#">Gadgets</a>
-										<a href="single-blog.html"><h4>{{ post.title }}</h4></a>
-										<p>{{ post.content }}</p>
+										<a href="{% url 'detail' pk=post.pk %}"><h4>{{ post.title }}</h4></a>
+										<p>{{ post.content|truncatechars:100 }}</p>
 										<div class="date">
 											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.publishing_time}}</a>
 											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
