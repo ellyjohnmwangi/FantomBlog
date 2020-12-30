@@ -34,18 +34,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Tag(models.Model):
-    title = models.CharField(max_length=50)
-    slug = models.SlugField(editable=False)
-
-    def __str__(self):
-        return self.title
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Tag, self).save(*args, **kwargs)
-
-    def post_count(self):
-        return self.posts.all().count()
