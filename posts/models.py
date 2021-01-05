@@ -30,6 +30,9 @@ class Tag(models.Model):
         self.slug = slugify(self.title)
         super(Tag, self).save(*args, **kwargs)
 
+    def tag_count(self):
+        return self.posts.all().count()
+
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
