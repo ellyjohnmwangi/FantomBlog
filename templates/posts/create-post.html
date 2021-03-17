@@ -55,9 +55,13 @@
 
                                 {% for field in form %}
                                 <div class="mt-10">
+                                    {{ field }}
 
-									</div>
+                                </div>
                                 {% endfor %}
+                                <div class="mt-10">
+										<input type="text" name="tag" placeholder="Tag" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tag'" required="" class="single-input">
+									</div>
                                 <input type="submit" class="genric-btn success circle"  style="float:right ;margin-top: 30px; margin-right: 45% " value="Add Post">
                             </form>
                         </div>
