@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 
 from .models import Post, Category, Tag
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import PostCreationForm, PostUpdateForm
 
 
@@ -124,3 +124,22 @@ class UpdatePostView(UpdateView):
             return HttpResponseRedirect('/')
         return super(UpdatePostView, self).get(request, *args, ** kwargs)
 
+
+class DeletePostView(DeleteView):
+    model = Post
+    success_url = '/'
+    template_name = 'posts/delete.html'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.user == request.user:
+            self.object.delete()
+            return HttpResponseRedirect(self.success_url)
+        else:
+            return HttpResponseRedirect(self.success_url)
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.user != request.user:
+            return HttpResponseRedirect('/')
+        return super(DeletePostView, self).get()
