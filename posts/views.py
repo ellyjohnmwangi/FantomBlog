@@ -28,8 +28,8 @@ class IndexView(ListView):
 class PostDetail(DetailView):
     template_name = 'posts/detail.html'
     model = Post
-
     context_object_name = 'single'
+    paginate_by = 3
 
     def get(self, request, *args, **kwargs):
         self.hit= Post.objects.filter(id=self.kwargs['pk']).update(hit=F('hit')+1)
@@ -46,6 +46,7 @@ class CategoryDetail(ListView):
     model = Post
     template_name = 'categories/category_detail.html'
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
@@ -62,6 +63,7 @@ class TagDetail(ListView):
     model = Post
     template_name = 'tags/tags_detail.html'
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_queryset(self):
         self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
