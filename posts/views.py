@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.db.models import F
+from django.db.models import F, Q
 from django.shortcuts import render, get_object_or_404
 from django.template.defaultfilters import slugify
 from django.urls import reverse
@@ -153,3 +153,20 @@ class DeletePostView(DeleteView):
         if self.object.user != request.user:
             return HttpResponseRedirect('/')
         return super(DeletePostView, self).get()
+
+
+class SearchView(ListView):
+    model = Post
+    template_name = 'posts/search.html'
+    paginate_by = 5
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+
+        if query:
+            return Post.objects.filter(Q(title__icontains=query)|
+                                       Q(content__icontains=query)|
+                                       Q(tag__title__contains=query)
+                                       ).order_by('id')
+        return Post.objects.all().order_by('id')
