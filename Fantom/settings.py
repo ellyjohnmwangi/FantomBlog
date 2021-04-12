@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'posts',
     'users',
     'crispy_forms',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+RECAPTCHA_PUBLIC_KEY = '6LflTacaAAAAAAqREhp6Zs7kW56oL-ZO24mzhCYn'
+RECAPTCHA_PRIVATE_KEY = '6LflTacaAAAAABpJUKBZuAHI95d6HcEpf-L6D0NE'
