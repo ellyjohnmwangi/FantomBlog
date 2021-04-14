@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 from PIL import Image
 
-
 # Create your models here.
 from django.db.models.signals import post_save
 from django.template.defaultfilters import slugify
@@ -28,8 +27,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 
-post_save.connect(create_user_profile, sender = settings.AUTH_USER_MODEL)
+
+post_save.connect(create_user_profile, sender=settings.AUTH_USER_MODEL)
