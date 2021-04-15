@@ -61,8 +61,7 @@ class PostDetail(DetailView, FormMixin):
             return self.form_valid(form)
 
     def get_success_url(self):
-        return reverse('detail', kwargs={"pk": self.object.pk, "slug": self.object.slug})        
-
+        return reverse('detail', kwargs={"pk": self.object.pk, "slug": self.object.slug})
 
 
 class CategoryDetail(ListView):
@@ -155,7 +154,7 @@ class UpdatePostView(UpdateView):
 
         if self.object.user != request.user:
             return HttpResponseRedirect('/')
-        return super(UpdatePostView, self).get(request, *args, ** kwargs)
+        return super(UpdatePostView, self).get(request, *args, **kwargs)
 
 
 class DeletePostView(DeleteView):
@@ -188,8 +187,8 @@ class SearchView(ListView):
         query = self.request.GET.get('q')
 
         if query:
-            return Post.objects.filter(Q(title__icontains=query)|
-                                       Q(content__icontains=query)|
+            return Post.objects.filter(Q(title__icontains=query) |
+                                       Q(content__icontains=query) |
                                        Q(tag__title__contains=query)
                                        ).order_by('id')
         return Post.objects.all().order_by('id').distinct()
