@@ -83,7 +83,7 @@
 		                            <li class="page-item active"><a href="#" class="page-link">{{ i }}</a></li>
                                         {% else %}
 
-		                            <li class="page-item"><a href="?page = {{ i }}" class="page-link">{{ i }}</a></li>
+		                            <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
 		                                {% endif %}
                                     {% endfor %}
                                     {% if page_obj.has_next %}
