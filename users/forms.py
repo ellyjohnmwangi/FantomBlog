@@ -33,10 +33,6 @@ class UserProfileForm(forms.ModelForm):
 
         self.helper.add_input(Submit('submit', 'Update', css_class="genric-btn success-border medium"))
 
-    class Meta:
-        model = UserProfile
-        fields = ('birth_day', 'bio', 'image')
-        widgets = {
-            'birthday': forms.DateInput(attrs={'type':'date'})
-        }
-
+        class Meta:
+            model = UserProfile
+            fields = ('birthday', 'bio', 'image')
