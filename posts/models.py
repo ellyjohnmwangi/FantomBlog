@@ -59,15 +59,18 @@ class Post(models.Model):
     def post_tag(self):
         return ','.join(str(tag) for tag in self.tag.all())
 
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
+
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete = models.CASCADE, related_name = 'comments')
-    name = models.CharField(max_length =100)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     content = models.TextField()
     publishing_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.post.title
-
-
-
