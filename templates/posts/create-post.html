@@ -35,7 +35,7 @@
 
                         <h2 style="text-align: center; color: #2d8bfa">Create Post</h2>
                         <div class="blog_left_sidebar">
-                            <form method = "post">
+                            <form method = "post" enctype="multipart/form-data">
 
                                 {% csrf_token %}
                                 {% if form.errors %}
